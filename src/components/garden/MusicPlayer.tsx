@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMusicalNote, HiOutlinePause } from "react-icons/hi2";
 
-// Soft ambient piano (royalty-free, hosted CDN)
-const TRACK = "https://cdn.pixabay.com/download/audio/2022/03/15/audio_1718e49cda.mp3?filename=relaxing-mountains-rivers-streams-running-water-18178.mp3";
+const TRACK = "/hbd.mp3";
 
 export function MusicPlayer() {
   const [playing, setPlaying] = useState(false);
@@ -14,7 +13,48 @@ export function MusicPlayer() {
     a.loop = true;
     a.volume = 0;
     audioRef.current = a;
-    return () => { a.pause(); audioRef.current = null; };
+    
+    let interactionHandled = false;
+    const handleInteraction = () => {
+      if (interactionHandled || !audioRef.current || !audioRef.current.paused) return;
+      
+      interactionHandled = true; // prevent overlapping calls
+      
+      audioRef.current.volume = 0;
+      audioRef.current.play().then(() => {
+        setPlaying(true);
+        const fade = setInterval(() => {
+          if (audioRef.current && audioRef.current.volume < 0.35) {
+            audioRef.current.volume = Math.min(0.35, audioRef.current.volume + 0.03);
+          } else {
+            clearInterval(fade);
+          }
+        }, 80);
+        
+        // Only remove listeners if playback successfully started
+        window.removeEventListener("scroll", handleInteraction);
+        window.removeEventListener("click", handleInteraction);
+        window.removeEventListener("touchstart", handleInteraction);
+        window.removeEventListener("pointerdown", handleInteraction);
+      }).catch(() => {
+        // Autoplay was blocked by the browser. Try again on next interaction.
+        interactionHandled = false;
+      });
+    };
+
+    window.addEventListener("scroll", handleInteraction, { passive: true });
+    window.addEventListener("click", handleInteraction, { passive: true });
+    window.addEventListener("touchstart", handleInteraction, { passive: true });
+    window.addEventListener("pointerdown", handleInteraction, { passive: true });
+
+    return () => { 
+      a.pause(); 
+      audioRef.current = null; 
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("pointerdown", handleInteraction);
+    };
   }, []);
 
   const toggle = () => {

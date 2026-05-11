@@ -1,31 +1,7 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { HiOutlinePlay, HiOutlinePause } from "react-icons/hi2";
 import twilightImg from "@/assets/twilight-sky.jpg";
 
 export function VoiceMessage() {
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Placeholder soft track; replace with your real voice memo file
-    const a = new Audio("https://cdn.pixabay.com/download/audio/2023/06/06/audio_aa4f7be0e0.mp3?filename=soft-piano-music-312509.mp3");
-    a.preload = "metadata";
-    audioRef.current = a;
-    const onTime = () => setProgress((a.currentTime / (a.duration || 1)) * 100);
-    const onEnd = () => { setPlaying(false); setProgress(0); };
-    a.addEventListener("timeupdate", onTime);
-    a.addEventListener("ended", onEnd);
-    return () => { a.pause(); a.removeEventListener("timeupdate", onTime); a.removeEventListener("ended", onEnd); };
-  }, []);
-
-  const toggle = () => {
-    const a = audioRef.current; if (!a) return;
-    if (playing) { a.pause(); setPlaying(false); }
-    else { a.play(); setPlaying(true); }
-  };
-
   return (
     <section className="relative overflow-hidden">
       <img src={twilightImg} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50" loading="lazy" />
@@ -50,43 +26,17 @@ export function VoiceMessage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.4, delay: 0.2 }}
-          className="mx-auto mt-14 max-w-xl rounded-3xl glass p-8 shadow-cinema"
+          className="mx-auto mt-14 max-w-xl rounded-3xl glass p-10 shadow-cinema"
         >
-          <div className="flex items-center gap-5">
-            <button
-              onClick={toggle}
-              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-golden text-primary-foreground glow-sun transition-transform hover:scale-105"
-              aria-label={playing ? "Pause" : "Play"}
-            >
-              {playing ? <HiOutlinePause className="h-7 w-7" /> : <HiOutlinePlay className="h-7 w-7 translate-x-0.5" />}
-            </button>
-
-            <div className="flex-1 text-left">
-              <p className="text-xs uppercase tracking-[0.3em] text-cream/50">play message</p>
-              <p className="mt-1 font-display text-xl text-cream">a little something I wanted to say</p>
-
-              {/* Waveform */}
-              <div className="mt-4 flex h-10 items-end gap-[3px]">
-                {Array.from({ length: 48 }).map((_, i) => {
-                  const filled = (i / 48) * 100 < progress;
-                  const h = 10 + Math.abs(Math.sin(i * 0.7) * 28) + (i % 5) * 2;
-                  return (
-                    <span
-                      key={i}
-                      className="flex-1 rounded-full transition-colors"
-                      style={{
-                        height: `${h}px`,
-                        background: filled ? "var(--sun)" : "oklch(1 0 0 / 0.2)",
-                        animation: playing && filled ? `shimmer ${0.6 + (i % 5) * 0.1}s ease-in-out infinite` : "none",
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            </div>
+          <div className="flex flex-col items-center justify-center gap-6">
+            <p className="text-lg md:text-xl font-light text-cream/90 leading-relaxed text-center font-display tracking-wide">
+              "Happy Birthday! May your day be as bright as the morning sun and as peaceful as the evening twilight. Wishing you a year full of beautiful moments, laughter, and endless joy. You deserve all the best things in life!"
+            </p>
+            <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-sun/50 to-transparent" />
           </div>
         </motion.div>
       </div>
     </section>
   );
 }
+

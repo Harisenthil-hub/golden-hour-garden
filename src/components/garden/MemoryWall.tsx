@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
-import m1 from "@/assets/memory-1.jpg";
-import m2 from "@/assets/memory-2.jpg";
-import m3 from "@/assets/memory-3.jpg";
-import m4 from "@/assets/memory-4.jpg";
-import m5 from "@/assets/memory-5.jpg";
+import m1 from "@/assets/memory-1.webp";
+import m2 from "@/assets/memory-2.webp";
+import m3 from "@/assets/memory-3.webp";
+import m4 from "@/assets/memory-4.webp";
+import m5 from "@/assets/memory-5.webp";
+import m6 from "@/assets/memory-6.webp";
+import m7 from "@/assets/memory-7.webp";
 import sun from "@/assets/sunflower-close.jpg";
 
 type Frame = {
@@ -21,6 +23,8 @@ const frames: Frame[] = [
   { src: m3, caption: "your quiet little world", date: "morning, slow", rotate: 5, className: "md:col-span-4 md:-translate-y-4" },
   { src: sun, caption: "you, basically", date: "🌻", rotate: -4, className: "md:col-span-3 md:translate-y-8" },
   { src: m5, caption: "even butterflies stop for you", date: "a tiny pause", rotate: 6, className: "md:col-span-5" },
+  { src: m6, caption: "Where flowers bloom, so does hope", date: "spring", rotate: -6, className: "md:col-span-4 md:row-span-2 md:translate-y-6" },
+  { src: m7, caption: "Finding joy in the language of blooms", date: "remember this?", rotate: 4, className: "md:col-span-3" },
 ];
 
 export function MemoryWall() {
@@ -71,8 +75,8 @@ export function MemoryWall() {
                   />
                 </div>
                 <figcaption className="mt-3 flex items-baseline justify-between px-1">
-                  <span className="font-script text-xl text-foreground/80">{f.caption}</span>
-                  {f.date && <span className="text-[10px] uppercase tracking-[0.2em] text-foreground/40">{f.date}</span>}
+                  <span className="font-script text-xl text-indigo-500">{f.caption}</span>
+                  {/* {f.date && <span className="text-[10px] uppercase tracking-[0.2em] text-blue-500">{f.date}</span>} */}
                 </figcaption>
 
                 {/* Glow on hover */}
