@@ -18,6 +18,9 @@ fs.mkdirSync(path.join(outputDir, 'functions', 'index.func'), { recursive: true 
 // Copy static assets
 fs.cpSync('dist/client', path.join(outputDir, 'static'), { recursive: true });
 
+// Copy server bundle into the function directory
+fs.cpSync('dist/server', path.join(outputDir, 'functions', 'index.func', 'server'), { recursive: true });
+
 // Create Vercel function config
 fs.writeFileSync(path.join(outputDir, 'functions', 'index.func', '.vc-config.json'), JSON.stringify({
   runtime: 'edge',
@@ -26,7 +29,7 @@ fs.writeFileSync(path.join(outputDir, 'functions', 'index.func', '.vc-config.jso
 
 // Create Edge function entrypoint
 const edgeFunctionCode = `
-import server from '../../../../dist/server/server.js';
+import server from './server/server.js';
 export default async function handler(request) {
   return await server.fetch(request);
 }
