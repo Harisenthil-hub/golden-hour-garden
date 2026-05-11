@@ -2,11 +2,16 @@
   "version": 3,
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "^/assets/(.+)$",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "^/(hbd\\.mp3|banner\\.png|bd1\\.jpg)$",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/index"
     }
   ]
 }
