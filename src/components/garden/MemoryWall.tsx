@@ -22,9 +22,9 @@ const frames: Frame[] = [
   { src: m4, caption: "skies you taught me to notice", date: "july dusk", rotate: -3, className: "md:col-span-5 md:translate-y-12" },
   { src: m3, caption: "your quiet little world", date: "morning, slow", rotate: 5, className: "md:col-span-4 md:-translate-y-4" },
   { src: sun, caption: "you, basically", date: "🌻", rotate: -4, className: "md:col-span-3 md:translate-y-8" },
-  { src: m5, caption: "even butterflies stop for you", date: "a tiny pause", rotate: 6, className: "md:col-span-5" },
-  { src: m6, caption: "Where flowers bloom, so does hope", date: "spring", rotate: -6, className: "md:col-span-4 md:row-span-2 md:translate-y-6" },
-  { src: m7, caption: "Finding joy in the language of blooms", date: "remember this?", rotate: 4, className: "md:col-span-3" },
+  { src: m5, caption: "even butterflies stop for you", date: "a tiny pause", rotate: 6, className: "md:col-span-4" },
+  { src: m6, caption: "Where flowers bloom, so does hope", date: "spring", rotate: -4, className: "md:col-span-4 md:translate-y-4" },
+  { src: m7, caption: "Finding joy in the language of blooms", date: "remember this?", rotate: 4, className: "md:col-span-4" },
 ];
 
 export function MemoryWall() {

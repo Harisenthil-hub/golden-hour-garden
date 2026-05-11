@@ -182,64 +182,6 @@ export function GrowGarden() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Surprise Photo Frames */}
-        {/* <AnimatePresence>
-          {grown && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 4.5, duration: 2 }}
-              className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-12 px-6 md:grid-cols-2"
-            >
-              <motion.figure
-                initial={{ opacity: 0, y: 40, rotate: -4 }}
-                animate={{ opacity: 1, y: 0, rotate: -2 }}
-                transition={{ delay: 5, duration: 1.5, ease: "easeOut" }}
-                whileHover={{ rotate: 0, scale: 1.02 }}
-                className="group relative"
-              >
-                <div className="absolute -top-3 left-1/2 z-20 h-5 w-20 -translate-x-1/2 rotate-[-4deg] rounded-sm bg-cream/40 backdrop-blur-sm shadow-md" />
-                <div className="relative rounded-sm bg-cream p-3 pb-10 shadow-frame transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-15px_rgba(252,211,77,0.3)]">
-                  <div className="overflow-hidden rounded-sm bg-black/20">
-                    <img
-                      src="/bd1.jpg"
-                      alt="A beautiful memory"
-                      loading="lazy"
-                      className="aspect-square w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                    />
-                  </div>
-                  <figcaption className="mt-3 text-center font-script text-2xl text-foreground/80">
-                    blooming together
-                  </figcaption>
-                </div>
-              </motion.figure>
-
-              <motion.figure
-                initial={{ opacity: 0, y: 40, rotate: 5 }}
-                animate={{ opacity: 1, y: 0, rotate: 3 }}
-                transition={{ delay: 5.4, duration: 1.5, ease: "easeOut" }}
-                whileHover={{ rotate: 0, scale: 1.02 }}
-                className="group relative mt-12 md:mt-0 md:translate-y-12"
-              >
-                <div className="absolute -top-3 left-1/2 z-20 h-5 w-20 -translate-x-1/2 rotate-[3deg] rounded-sm bg-cream/40 backdrop-blur-sm shadow-md" />
-                <div className="relative rounded-sm bg-cream p-3 pb-10 shadow-frame transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-15px_rgba(252,211,77,0.3)]">
-                  <div className="overflow-hidden rounded-sm bg-black/20">
-                    <img
-                      src="/banner.png"
-                      alt="Another sweet moment"
-                      loading="lazy"
-                      className="aspect-square w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                    />
-                  </div>
-                  <figcaption className="mt-3 text-center font-script text-2xl text-foreground/80">
-                    always celebrating you
-                  </figcaption>
-                </div>
-              </motion.figure>
-            </motion.div>
-          )}
-        </AnimatePresence> */}
       </div>
     </section>
   );
